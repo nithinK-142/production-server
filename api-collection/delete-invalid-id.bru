@@ -1,0 +1,21 @@
+meta {
+  name: Delete Anime - Invalid ID Format
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/delete
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "invalid-id-format"
+  }
+}

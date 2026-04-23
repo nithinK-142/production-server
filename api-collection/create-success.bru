@@ -1,0 +1,110 @@
+meta {
+  name: Create Anime - Success
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/create
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Solo Leveling",
+    "japaneseTitle": "俺だけレベルアップな件",
+    "romajiTitle": "Ore dake Level Up na Ken",
+    "englishTitle": "Solo Leveling",
+    "description": "In a world where hunters battle monsters, Sung Jin-Woo is the weakest E-rank hunter. After a near-death experience, he gains a mysterious system that allows him to level up infinitely.",
+    "synopsis": "The weakest hunter becomes the strongest through a mysterious leveling system.",
+    "episodes": 12,
+    "episodeDuration": 24,
+    "status": "ongoing",
+    "startDate": "2024-01-07",
+    "averageRating": 8.9,
+    "popularity": 850000,
+    "favorites": 120000,
+    "genres": ["action", "fantasy", "thriller"],
+    "themes": ["leveling", "dungeons", "solo protagonist"],
+    "demographic": "shounen",
+    "ageRating": "PG-13",
+    "source": "webtoon",
+    "studio": "A-1 Pictures",
+    "producer": ["Aniplex", "Crunchyroll"],
+    "tags": ["overpowered", "system", "hunter"],
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "title": "Solo Leveling Season 1",
+        "episodes": 12,
+        "startDate": "2024-01-07",
+        "rating": 8.9,
+        "synopsis": "Sung Jin-Woo discovers his leveling system."
+      }
+    ],
+    "ratings": [
+      {
+        "site": "myanimelist",
+        "score": 8.9,
+        "votes": 150000,
+        "url": "https://myanimelist.net/anime/52299/Solo_Leveling"
+      },
+      {
+        "site": "imdb",
+        "score": 8.7,
+        "votes": 25000,
+        "url": "https://www.imdb.com/title/tt21209872/"
+      }
+    ],
+    "characters": [
+      {
+        "name": "Sung Jin-Woo",
+        "japaneseName": "水篠旬",
+        "role": "main",
+        "voiceActor": "Taito Ban",
+        "japaneseVoiceActor": "Taito Ban",
+        "description": "The protagonist who can level up infinitely."
+      },
+      {
+        "name": "Cha Hae-In",
+        "japaneseName": "車海印",
+        "role": "supporting",
+        "voiceActor": "Reina Ueda",
+        "japaneseVoiceActor": "Reina Ueda",
+        "description": "S-rank hunter and love interest."
+      }
+    ],
+    "staff": [
+      {
+        "name": "Chugong",
+        "role": "writer",
+        "contribution": "Original Creator"
+      },
+      {
+        "name": "Shunsuke Nakashige",
+        "japaneseName": "中重俊祐",
+        "role": "director",
+        "contribution": "Director"
+      }
+    ],
+    "openingThemes": [
+      {
+        "title": "LEveL",
+        "artist": "SawanoHiroyuki[nZk]:TOMORROW X TOGETHER",
+        "episodes": "1-12"
+      }
+    ],
+    "endingThemes": [
+      {
+        "title": "Request",
+        "artist": "Krage",
+        "episodes": "1-12"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+meta {
+  name: Bulk Create Anime - Success
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/bulk-create
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  [
+    {
+      "title": "Wind Breaker",
+      "japaneseTitle": "ウィンドブレイカー",
+      "description": "Haruka Sakura wants to become the strongest at Furin High School.",
+      "episodes": 13,
+      "status": "ongoing",
+      "startDate": "2024-04-05",
+      "genres": ["action", "school", "drama"],
+      "demographic": "shounen",
+      "studio": "CloverWorks"
+    },
+    {
+      "title": "Kaiju No. 8",
+      "japaneseTitle": "怪獣8号",
+      "description": "Kafka Hibino gains the ability to turn into a kaiju.",
+      "episodes": 12,
+      "status": "ongoing",
+      "startDate": "2024-04-13",
+      "genres": ["action", "sci-fi", "comedy"],
+      "demographic": "shounen",
+      "studio": "Production I.G"
+    }
+  ]
+}

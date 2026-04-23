@@ -1,0 +1,25 @@
+meta {
+  name: Update Anime - Partial Update
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/update
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "{{anime_id}}",
+    "averageRating": 9.3,
+    "favorites": 500000,
+    "tags": ["masterpiece", "highly recommended", "award-winning"],
+    "awards": ["Anime of the Year", "Best Animation"]
+  }
+}

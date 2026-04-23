@@ -1,0 +1,22 @@
+meta {
+  name: Update Anime - Validation Error (Invalid Rating)
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/update
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "{{anime_id}}",
+    "averageRating": 11
+  }
+}

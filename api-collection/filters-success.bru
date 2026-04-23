@@ -1,0 +1,32 @@
+meta {
+  name: Filters - Advanced Filtering
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/filters
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "minRating": 8.0,
+    "maxRating": 10.0,
+    "demographic": "shounen",
+    "ageRating": "PG-13",
+    "source": "manga",
+    "studio": "Madhouse",
+    "genre": "action",
+    "status": "completed",
+    "page": 1,
+    "limit": 10,
+    "sortBy": "popularity",
+    "order": "desc"
+  }
+}

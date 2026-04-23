@@ -1,0 +1,22 @@
+meta {
+  name: Create Anime - Validation Error (Missing Fields)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/create
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Invalid Anime",
+    "description": "Missing japaneseTitle and genres"
+  }
+}

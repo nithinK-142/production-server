@@ -1,0 +1,19 @@
+meta {
+  name: Get Anime Statistics
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/stats
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {}
+}

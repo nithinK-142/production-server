@@ -1,0 +1,37 @@
+meta {
+  name: Update Anime - Add New Season
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/update
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "{{anime_id}}",
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "title": "First Season",
+        "episodes": 12,
+        "startDate": "2024-01-01",
+        "rating": 8.5
+      },
+      {
+        "seasonNumber": 2,
+        "title": "Second Season",
+        "episodes": 12,
+        "startDate": "2024-07-01",
+        "rating": 9.0
+      }
+    ]
+  }
+}

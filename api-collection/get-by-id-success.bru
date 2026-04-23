@@ -1,0 +1,21 @@
+meta {
+  name: Get Anime By ID - Success
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/{{api_version}}/anime/get-by-id
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "{{anime_id}}"
+  }
+}
