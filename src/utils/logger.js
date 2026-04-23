@@ -36,10 +36,23 @@ export function getTimestamp() {
 }
 
 export function logWithTimestamp(message, data = null) {
-  const logLine = data
-    ? `${getTimestamp()} : ${message}\n${JSON.stringify(data, null, 2)}\n`
-    : `${getTimestamp()} : ${message}\n`;
+  if (typeof message === "object") {
+    data = message;
+    message = "LOG";
+  }
 
+  let logLine;
+
+  if (data !== null) {
+    try {
+      logLine = `${getTimestamp()} : ${message}\n${JSON.stringify(data, null, 2)}\n`;
+    } catch {
+      logLine = `${getTimestamp()} : ${message}\n[UNSERIALIZABLE DATA]\n`;
+    }
+  } else {
+    logLine = `${getTimestamp()} : ${message}\n`;
+  }
+  
   // console output
   // process.stdout.write(logLine);
 
