@@ -53,8 +53,9 @@ export const requestLogger = (req, res, next) => {
   const oldSend = res.send;
   res.send = function (body) {
     try {
+      const str = typeof body === "string" ? body : JSON.stringify(body);
       const parsed = typeof body === "string" ? JSON.parse(body) : body;
-console.log("parsed",parsed)
+
       // derive status directly
       if (parsed && typeof parsed.success === "boolean") {
         res._statusLabel = parsed.success ? "success" : "fail";
@@ -63,16 +64,15 @@ console.log("parsed",parsed)
       }
 
       // capture size
-      res._contentLength = typeof body === "string" ? Buffer.byteLength(body) : Buffer.byteLength(JSON.stringify(body));
+      res._contentLength = Buffer.byteLength(str);
 
       // capture response
-      if (str.length > 5000) {
-        res._responseMeta = "[RESPONSE TOO LARGE]";
-      } else {
-        res._responseMeta = parsed;
-      }
-    } catch {
+      const MAX_LOG_SIZE = 5000;
+      res._responseMeta = str.length > MAX_LOG_SIZE ? "[RESPONSE TOO LARGE]" : parsed;
+    } catch (err) {
+      res._statusLabel = "unknown";
       res._contentLength = 0;
+      res._responseMeta = "[UNPARSEABLE RESPONSE]";
     }
     return oldSend.call(this, body);
   };
