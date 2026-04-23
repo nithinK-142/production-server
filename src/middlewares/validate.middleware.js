@@ -34,7 +34,7 @@ export const validate = (schema, property = "body") => {
     const result = schema.safeParse({ [property]: dataToValidate });
     
     if (!result.success) {
-      const errors = result.error.errors.map(err => ({
+      const errors = result.error.issues.map(err => ({
         path: err.path.join("."),
         message: err.message,
         code: err.code
