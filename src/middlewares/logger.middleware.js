@@ -13,6 +13,7 @@ export const requestLogger = (req, res, next) => {
 
   req.log = {
     id: requestId,
+    requestReachedServerAt: getTimestamp(),
     protocol: req.headers["x-forwarded-proto"] || req.protocol,
     method: req.method,
     host: req.headers.host,
