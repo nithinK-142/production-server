@@ -1,21 +1,47 @@
-import fs from "fs";
+import pino from "pino";
 import path from "path";
-import { createStream } from "rotating-file-stream";
+import fs from "fs";
+import { fileURLToPath } from "url";
 
-const logDir = path.resolve("logs");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// ensure logs directory exists
+const logDir = path.join(__dirname, "../../logs");
+
 if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir);
+  fs.mkdirSync(logDir, { recursive: true });
 }
 
-// rotate daily
-const accessLogStream = createStream("app.log", {
-  interval: "1d",
-  path: logDir,
-  compress: "gzip",
-  maxFiles: 9999999999
+// daily file
+function getFileName() {
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+
+  return `production-server-${yyyy}-${mm}-${dd}.log`;
+}
+
+const transport = pino.transport({
+  targets: [
+    {
+      target: "pino/file",
+      options: {
+        destination: path.join(logDir, getFileName()),
+        mkdir: true
+      }
+    }
+  ]
 });
+
+export const logger = pino(
+  {
+    level: "info",
+    timestamp: () => `,"time":"${new Date().toISOString()}"`
+  },
+  transport
+);
+
 
 export function getTimestamp() {
   const d = new Date();
@@ -41,21 +67,9 @@ export function logWithTimestamp(message, data = null) {
     message = "LOG";
   }
 
-  let logLine;
-
-  if (data !== null) {
-    try {
-      logLine = `${getTimestamp()} : ${message}\n${JSON.stringify(data, null, 2)}\n`;
-    } catch {
-      logLine = `${getTimestamp()} : ${message}\n[UNSERIALIZABLE DATA]\n`;
-    }
+  if (data) {
+    logger.info({ msg: `${getTimestamp()} : ${message}`, ...data });
   } else {
-    logLine = `${getTimestamp()} : ${message}\n`;
+    logger.info({ msg: `${getTimestamp()} : ${message}` });
   }
-  
-  // console output
-  // process.stdout.write(logLine);
-
-  // file output
-  accessLogStream.write(logLine);
 }
