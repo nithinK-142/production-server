@@ -45,7 +45,7 @@ export const validate = (schema, property = "body") => {
         req.log.logs.push(`${getTimestamp()} : Validation Error - ${err.path}: ${err.message}`);
       });
       
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         message: "Validation failed",
         errors,
