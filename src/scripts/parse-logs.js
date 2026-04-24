@@ -32,7 +32,7 @@ function getAllLogs() {
   return fs.readdirSync(logsDir)
     .filter(f =>
       f.endsWith(".log") &&
-      f.startsWith("production-server-") &&
+      f.startsWith("production-server") &&
       !f.includes("_parsed")
     )
     .sort();

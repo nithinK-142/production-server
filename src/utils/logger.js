@@ -12,23 +12,18 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir, { recursive: true });
 }
 
-// daily file
-function getFileName() {
-  const d = new Date();
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const dd = String(d.getDate()).padStart(2, "0");
-
-  return `production-server-${yyyy}-${mm}-${dd}.log`;
-}
-
 const transport = pino.transport({
   targets: [
     {
-      target: "pino/file",
+      target: "pino-roll",
       options: {
-        destination: path.join(logDir, getFileName()),
-        mkdir: true
+        file: path.join(logDir, "production-server.log"),
+        // frequency: "daily",
+        frequency: "5m",
+        dateFormat: "yyyy-MM-dd", 
+        size: "100m",
+        maxFiles: 14,
+        compress: true
       }
     }
   ]
