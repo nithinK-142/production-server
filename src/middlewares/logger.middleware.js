@@ -90,7 +90,7 @@ export const requestLogger = (req, res, next) => {
 
     const logLine = `${req.method} | ${res.statusCode} | ${res._statusLabel} | ${res._contentLength || 0} bytes | ${req.log.duration.toFixed(3)} ms | ${req.originalUrl}`;
 
-    logWithTimestamp(req.log.id, req.log);
+    logWithTimestamp({ id: req.log.id, ...req.log });
     logWithTimestamp(logLine);
   });
 
