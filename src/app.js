@@ -38,14 +38,14 @@ app.use(
 );
 
 // ====================
-// 📊 Logging (START EARLY)
-// ====================
-app.use(requestLogger);
-
-// ====================
 // 📦 Body Parser
 // ====================
 app.use(express.json({ limit: "1mb" }));
+
+// ====================
+// 📊 Logging
+// ====================
+app.use(requestLogger);
 
 // ====================
 // ⚡ Compression
