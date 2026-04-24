@@ -18,9 +18,8 @@ const transport = pino.transport({
       target: "pino-roll",
       options: {
         file: path.join(logDir, "production-server.log"),
-        // frequency: "daily",
-        frequency: "5m",
-        dateFormat: "yyyy-MM-dd", 
+        frequency: "daily",
+        dateFormat: "yyyy-MM-dd",
         size: "100m",
         maxFiles: 14,
         compress: true
